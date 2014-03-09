@@ -25,3 +25,4 @@ class Application(models.Model):
 	parents_income = models.ForeignKey('Income')
 	mother_job = models.CharField(max_length=100)
 	father_job = models.CharField(max_length=100)
+	position = models.ManyToMany('Position')
