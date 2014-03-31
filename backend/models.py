@@ -62,18 +62,18 @@ class Application(models.Model):
 	permanent_address = models.CharField(max_length=255)
 
 	# Financial Information
-	parents_income = models.ForeignKey('Income')
+	parents_income = models.ForeignKey('Income', related_name='+')
 	mother_job = models.CharField(max_length=100)
 	father_job = models.CharField(max_length=100)
 	position = models.CharField(choices=POSITION_CHOICES, max_length=1)
 	occupation = models.CharField(max_length=100)
-	income = models.ForeignKey('Income')
+	income = models.ForeignKey('Income', related_name='+')
 
 	# Educational Information
 	# Primary
 	primary_school = models.CharField(max_length=100)
 	primary_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	primary_marks = models.DecimalField()
+	primary_marks = models.DecimalField(max_digits=4, decimal_places=2)
 	primary_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
 	primary_passing = models.IntegerField(max_length=4)
 
@@ -81,15 +81,50 @@ class Application(models.Model):
 	intermediate_subjects = models.CharField(max_length=100)
 	intermediate_college = models.CharField(max_length=100)
 	intermediate_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	intermediate_marks = models.DecimalField()
+	intermediate_marks = models.DecimalField(max_digits=4, decimal_places=2)
 	intermediate_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
 	intermediate_passing = models.IntegerField(max_length=4)
 
 	# Degree
-	degree_subjects = models.ForeignKey('DegreeSubject')
+	degree_subject = models.ForeignKey('DegreeSubject')
 	degree_college = models.CharField(max_length=100)
 	degree_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	degree_marks = models.DecimalField()
+	degree_marks = models.DecimalField(max_digits=4, decimal_places=2)
 	degree_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
 	degree_passing = models.IntegerField(max_length=4)
 	degree_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2)
+
+	# Postgraduate Degree
+	post_subject = models.ForeignKey('PostgraduateSubject')
+	post_university = models.CharField(max_length=100)
+	post_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
+	post_marks = models.DecimalField(max_digits=4, decimal_places=2)
+	post_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
+	post_passing = models.IntegerField(max_length=4)
+	post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2)
+
+	academic_distinction = models.TextField()
+
+	essay = models.TextField()
+
+	def __unicode__(self):
+		print "%s %s" % (self.first_name, self.last_name)
+
+class Income(models.Model):
+	lower_bound = models.IntegerField()
+	upper_bound = models.IntegerField()
+
+	def __unicode__(self):
+		print "Income: " + str(self.lower_bound) + " to " + str(self.upper_bound)
+
+class DegreeSubject(models.Model):
+	name = models.CharField(max_length=30)
+
+	def __unicode__(self):
+		print "Degree Subject: " + str(self.name)
+
+class PostgraduateSubject(models.Model):
+	name = models.CharField(max_length=30)
+
+	def __unicode__(self):
+		print "Postgraduate Subject: " + str(self.name)
