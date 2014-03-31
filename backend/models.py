@@ -108,23 +108,23 @@ class Application(models.Model):
 	essay = models.TextField()
 
 	def __unicode__(self):
-		print "%s %s" % (self.first_name, self.last_name)
+		return "%s %s" % (self.first_name, self.last_name)
 
 class Income(models.Model):
 	lower_bound = models.IntegerField()
 	upper_bound = models.IntegerField()
 
 	def __unicode__(self):
-		print "Income: " + str(self.lower_bound) + " to " + str(self.upper_bound)
+		return "Income: " + str(self.lower_bound) + " to " + str(self.upper_bound)
 
 class DegreeSubject(models.Model):
 	name = models.CharField(max_length=30)
 
 	def __unicode__(self):
-		print "Degree Subject: " + str(self.name)
+		return "Degree Subject: " + str(self.name)
 
 class PostgraduateSubject(models.Model):
 	name = models.CharField(max_length=30)
 
 	def __unicode__(self):
-		print "Postgraduate Subject: " + str(self.name)
+		return "Postgraduate Subject: " + str(self.name)

@@ -7,11 +7,8 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': 'db.db',
-    #     'OPTIONS': {
-    #     	'timeout': 120
-    #     }
-    # }
 }
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost',
+)
