@@ -50,7 +50,7 @@ class Application(models.Model):
 	mobile = models.CharField(max_length=20)
 	father = models.CharField(max_length=150)
 	present_address = models.CharField(max_length=255)
-	permanent_address = models.CharField(max_length=255)
+	permanent_address = models.CharField(max_length=255, null=True, blank=True)
 
 	# Financial Information
 	parents_income = models.ForeignKey('Income', related_name='+')
@@ -59,8 +59,8 @@ class Application(models.Model):
 	is_employed = models.NullBooleanField()
 	is_looking = models.NullBooleanField()
 	is_student = models.NullBooleanField()
-	occupation = models.CharField(max_length=100)
-	income = models.ForeignKey('Income', related_name='+')
+	occupation = models.CharField(max_length=100, null=True, blank=True)
+	income = models.ForeignKey('Income', related_name='+', null=True, blank=True)
 
 	# Educational Information
 	# Primary
