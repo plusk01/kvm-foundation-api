@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "backend.income", "fields": {"lower_bound": 0, "upper_bound": 10000}}]
