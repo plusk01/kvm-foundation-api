@@ -10,10 +10,13 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
 
 class IncomeSerializer(serializers.ModelSerializer):
+	string = serializers.SerializerMethodField('_string')
+
 	class Meta:
 		model = Income
 
-
+	def _string(self, obj):
+		return obj.toString()
 
 
 class DegreeSubjectSerializer(serializers.ModelSerializer):

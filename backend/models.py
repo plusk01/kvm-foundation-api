@@ -10,15 +10,6 @@ class Application(models.Model):
 		(FEMALE, 'Female'),
 	)
 
-	EMPLOYED = 'E'
-	UNEMPLOYED = 'U'
-	STUDENT = 'S'
-	POSITION_CHOICES = (
-		(EMPLOYED, 'Employed'),
-		(UNEMPLOYED, 'Unemployed'),
-		(STUDENT, 'Student'),
-	)
-
 	ENGLISH = 'E'
 	TELUGU = 'T'
 	MEDIUM_CHOICES = (
@@ -65,7 +56,9 @@ class Application(models.Model):
 	parents_income = models.ForeignKey('Income', related_name='+')
 	mother_job = models.CharField(max_length=100)
 	father_job = models.CharField(max_length=100)
-	position = models.CharField(choices=POSITION_CHOICES, max_length=1)
+	is_employed = models.NullBooleanField()
+	is_looking = models.NullBooleanField()
+	is_student = models.NullBooleanField()
 	occupation = models.CharField(max_length=100)
 	income = models.ForeignKey('Income', related_name='+')
 
@@ -115,7 +108,21 @@ class Income(models.Model):
 	upper_bound = models.IntegerField()
 
 	def __unicode__(self):
-		return "Income: " + str(self.lower_bound) + " to " + str(self.upper_bound)
+		return "Income: " + self.toString()
+
+	def toString(self):
+		import locale
+
+		try:
+			locale.setlocale(locale.LC_ALL, 'en_IN.utf8')
+		except:
+			locale.setlocale(locale.LC_ALL, '')
+
+		low = locale.format("%.2f", self.lower_bound, grouping=True)
+		high = locale.format("%.2f", self.upper_bound, grouping=True)
+
+		return "%s to %s rupees" % (low, high)
+
 
 class DegreeSubject(models.Model):
 	name = models.CharField(max_length=30)
