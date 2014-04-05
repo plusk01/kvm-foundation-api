@@ -1,1 +1,3 @@
 *.pyc
+kvm_api/local_settings.py
+
