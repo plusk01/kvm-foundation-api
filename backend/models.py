@@ -79,22 +79,22 @@ class Application(models.Model):
 	intermediate_passing = models.IntegerField(max_length=4)
 
 	# Degree
-	degree_subject = models.ForeignKey('DegreeSubject')
-	degree_college = models.CharField(max_length=100)
-	degree_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	degree_marks = models.DecimalField(max_digits=4, decimal_places=2)
-	degree_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
-	degree_passing = models.IntegerField(max_length=4)
-	degree_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2)
+	degree_subject = models.ForeignKey('DegreeSubject', null=True, blank=True)
+	degree_college = models.CharField(max_length=100, null=True, blank=True)
+	degree_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	degree_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	degree_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	degree_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	degree_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 
 	# Postgraduate Degree
-	post_subject = models.ForeignKey('PostgraduateSubject')
-	post_university = models.CharField(max_length=100)
-	post_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	post_marks = models.DecimalField(max_digits=4, decimal_places=2)
-	post_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
-	post_passing = models.IntegerField(max_length=4)
-	post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2)
+	post_subject = models.ForeignKey('PostgraduateSubject', null=True, blank=True)
+	post_university = models.CharField(max_length=100, null=True, blank=True)
+	post_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	post_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	post_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	post_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 
 	academic_distinction = models.TextField()
 
