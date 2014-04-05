@@ -96,7 +96,7 @@ class Application(models.Model):
 	post_passing = models.IntegerField(max_length=4, null=True, blank=True)
 	post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 
-	academic_distinction = models.TextField()
+	academic_distinction = models.TextField(null=True, blank=True)
 
 	essay = models.TextField()
 
