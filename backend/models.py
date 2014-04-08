@@ -64,19 +64,19 @@ class Application(models.Model):
 
 	# Educational Information
 	# Primary
-	primary_school = models.CharField(max_length=100)
-	primary_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	primary_marks = models.DecimalField(max_digits=4, decimal_places=2)
-	primary_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
-	primary_passing = models.IntegerField(max_length=4)
+	primary_school = models.CharField(max_length=100, null=True, blank=True)
+	primary_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	primary_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	primary_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	primary_passing = models.IntegerField(max_length=4, null=True, blank=True)
 
 	# Intermediate
-	intermediate_subjects = models.CharField(max_length=100)
-	intermediate_college = models.CharField(max_length=100)
-	intermediate_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1)
-	intermediate_marks = models.DecimalField(max_digits=4, decimal_places=2)
-	intermediate_division = models.CharField(choices=DIVISION_CHOICES, max_length=2)
-	intermediate_passing = models.IntegerField(max_length=4)
+	intermediate_subjects = models.CharField(max_length=100, null=True, blank=True)
+	intermediate_college = models.CharField(max_length=100, null=True, blank=True)
+	intermediate_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	intermediate_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	intermediate_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	intermediate_passing = models.IntegerField(max_length=4, null=True, blank=True)
 
 	# Degree
 	degree_subject = models.ForeignKey('DegreeSubject', null=True, blank=True)
