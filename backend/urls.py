@@ -15,4 +15,7 @@ urlpatterns = patterns('',
 
 	url(r'^postgraduate-subjects$', views.PostgraduateSubjectList.as_view(), name='postgraduate-subject-list'),
 	url(r'^postgraduate-subjects/(?P<pk>[0-9]+)$', views.PostgraduateSubjectDetail.as_view(), name='postgraduate-subject-detail'),
+
+	url(r'^degree-types$', views.DegreeTypeList.as_view(), name='degree-type-list'),
+	url(r'^degree-types/(?P<pk>[0-9]+)$', views.DegreeTypeDetail.as_view(), name='degree-type-detail'),
 )

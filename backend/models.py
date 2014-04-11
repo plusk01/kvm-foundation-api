@@ -59,8 +59,8 @@ class Application(models.Model):
 	# is_employed = models.NullBooleanField()
 	# is_looking = models.NullBooleanField()
 	# is_student = models.NullBooleanField()
-	# occupation = models.CharField(max_length=100, null=True, blank=True)
-	# income = models.ForeignKey('Income', related_name='+', null=True, blank=True)
+	occupation = models.CharField(max_length=100, null=True, blank=True)
+	income = models.ForeignKey('Income', related_name='+', null=True, blank=True)
 
 	# # Educational Information
 	# # Primary

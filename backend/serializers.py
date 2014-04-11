@@ -29,3 +29,10 @@ class DegreeSubjectSerializer(serializers.ModelSerializer):
 class PostgraduateSubjectSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = PostgraduateSubject
+
+
+
+
+class DegreeTypeSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = DegreeType
