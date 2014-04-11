@@ -54,8 +54,8 @@ class Application(models.Model):
 
 	# Financial Information
 	parents_income = models.ForeignKey('Income', related_name='+')
-	mother_job = models.CharField(max_length=100)
-	father_job = models.CharField(max_length=100)
+	mother_job = models.CharField(max_length=100, null=True, blank=True)
+	father_job = models.CharField(max_length=100, null=True, blank=True)
 	# is_employed = models.NullBooleanField()
 	# is_looking = models.NullBooleanField()
 	# is_student = models.NullBooleanField()
