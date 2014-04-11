@@ -54,49 +54,56 @@ class Application(models.Model):
 
 	# Financial Information
 	parents_income = models.ForeignKey('Income', related_name='+')
-	mother_job = models.CharField(max_length=100)
-	father_job = models.CharField(max_length=100)
-	is_employed = models.NullBooleanField()
-	is_looking = models.NullBooleanField()
-	is_student = models.NullBooleanField()
+	mother_job = models.CharField(max_length=100, null=True, blank=True)
+	father_job = models.CharField(max_length=100, null=True, blank=True)
+	# is_employed = models.NullBooleanField()
+	# is_looking = models.NullBooleanField()
+	# is_student = models.NullBooleanField()
 	occupation = models.CharField(max_length=100, null=True, blank=True)
 	income = models.ForeignKey('Income', related_name='+', null=True, blank=True)
 
-	# Educational Information
-	# Primary
-	primary_school = models.CharField(max_length=100, null=True, blank=True)
-	primary_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
-	primary_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
-	primary_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
-	primary_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	# # Educational Information
+	# # Primary
+	# primary_school = models.CharField(max_length=100, null=True, blank=True)
+	# primary_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	# primary_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	# primary_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	# primary_passing = models.IntegerField(max_length=4, null=True, blank=True)
 
-	# Intermediate
-	intermediate_subjects = models.CharField(max_length=100, null=True, blank=True)
-	intermediate_college = models.CharField(max_length=100, null=True, blank=True)
-	intermediate_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
-	intermediate_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
-	intermediate_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
-	intermediate_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	# # Intermediate
+	# intermediate_subjects = models.CharField(max_length=100, null=True, blank=True)
+	# intermediate_college = models.CharField(max_length=100, null=True, blank=True)
+	# intermediate_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	# intermediate_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	# intermediate_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	# intermediate_passing = models.IntegerField(max_length=4, null=True, blank=True)
 
-	# Degree
-	degree_subject = models.ForeignKey('DegreeSubject', null=True, blank=True)
-	degree_college = models.CharField(max_length=100, null=True, blank=True)
-	degree_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
-	degree_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
-	degree_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
-	degree_passing = models.IntegerField(max_length=4, null=True, blank=True)
-	degree_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
+	# # Degree
+	# degree_subject = models.ForeignKey('DegreeSubject', null=True, blank=True)
+	# degree_college = models.CharField(max_length=100, null=True, blank=True)
+	# degree_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	# degree_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	# degree_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	# degree_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	# degree_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 
-	# Postgraduate Degree
-	post_subject = models.ForeignKey('PostgraduateSubject', null=True, blank=True)
-	post_university = models.CharField(max_length=100, null=True, blank=True)
-	post_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
-	post_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
-	post_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
-	post_passing = models.IntegerField(max_length=4, null=True, blank=True)
-	post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
+	# # Postgraduate Degree
+	# post_subject = models.ForeignKey('PostgraduateSubject', null=True, blank=True)
+	# post_university = models.CharField(max_length=100, null=True, blank=True)
+	# post_medium = models.CharField(choices=MEDIUM_CHOICES, max_length=1, null=True, blank=True)
+	# post_marks = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+	# post_division = models.CharField(choices=DIVISION_CHOICES, max_length=2, null=True, blank=True)
+	# post_passing = models.IntegerField(max_length=4, null=True, blank=True)
+	# post_current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 
-	academic_distinction = models.TextField(null=True, blank=True)
+	# academic_distinction = models.TextField(null=True, blank=True)
+
+	## Added to make Application simpler
+	current_degree = models.ForeignKey('DegreeType', related_name='+', null=True, blank=True)
+	current_degree_user = models.CharField(max_length=255, null=True, blank=True)
+	current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
+	current_subjects = models.CharField(max_length=255, null=True, blank=True)
+	institution_name = models.CharField(max_length=255, null=True, blank=True)
 
 	essay = models.TextField()
 
@@ -135,3 +142,9 @@ class PostgraduateSubject(models.Model):
 
 	def __unicode__(self):
 		return "Postgraduate Subject: " + str(self.name)
+
+class DegreeType(models.Model):
+	name = models.CharField(max_length=50)
+
+	def __unicode_(self):
+		return "Type: " + str(self.name)

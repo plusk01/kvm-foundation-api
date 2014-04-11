@@ -46,3 +46,14 @@ class PostgraduateSubjectList(generics.ListCreateAPIView):
 class PostgraduateSubjectDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = PostgraduateSubject.objects.all()
 	serializer_class = PostgraduateSubjectSerializer
+
+
+
+
+class DegreeTypeList(generics.ListCreateAPIView):
+	queryset = DegreeType.objects.all()
+	serializer_class = DegreeTypeSerializer
+
+class DegreeTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+	queryset = DegreeType.objects.all()
+	serializer_class = DegreeTypeSerializer
