@@ -99,7 +99,7 @@ class Application(models.Model):
 	# academic_distinction = models.TextField(null=True, blank=True)
 
 	## Added to make Application simpler
-	current_degree = models.ForeignKey('DegreeType', related_name='+')
+	current_degree = models.ForeignKey('DegreeType', related_name='+', null=True, blank=True)
 	current_degree_user = models.CharField(max_length=255, null=True, blank=True)
 	current_year = models.CharField(choices=YEAR_CHOICES, max_length=2, null=True, blank=True)
 	current_subjects = models.CharField(max_length=255, null=True, blank=True)
